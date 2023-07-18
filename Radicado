@@ -1,0 +1,28 @@
+import pandas as pd
+
+# Ruta de la hoja de cálculo de Excel
+ruta_excel = 'ruta/a/tu/archivo.xlsx'
+
+def buscar_estado(numero_radicado):
+    # Cargar la hoja de cálculo en un DataFrame
+    df = pd.read_excel(ruta_excel)
+    
+    # Filtrar los registros que coinciden con el número de radicado
+    resultados = df[df['Número de radicado'] == numero_radicado]
+    
+    if resultados.empty:
+        return "No se encontraron resultados para el número de radicado especificado."
+    else:
+        # Obtener el estado y otros datos relevantes
+        estado = resultados.iloc[0]['Estado']
+        fecha = resultados.iloc[0]['Fecha']
+        # Agrega aquí otros datos que desees obtener
+        
+        # Formatear y devolver los resultados
+        mensaje = f"Estado: {estado}\nFecha: {fecha}"
+        return mensaje
+
+# Ejemplo de uso
+numero_ingresado = '12345'
+resultado_busqueda = buscar_estado(numero_ingresado)
+print(resultado_busqueda)
